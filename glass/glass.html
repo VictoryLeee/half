@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山羊の前端小窝</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .title {
+            font-family: "Nosifer", sans-serif;
+            color: #ff6b35;
+            font-size: clamp(2rem, 1rem + 4vw, 5rem);
+            text-align: center;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 2rem 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            position: relative;
+            transition: transform 0.5s;
+        }
+
+        .box:hover {
+            transform: rotate(-15deg);
+        }
+
+        .image {
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            border: 4px solid rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s;
+        }
+
+        .box:hover .image img {
+            opacity: 0.5;
+        }
+
+        .glass {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.2), transparent);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: scale(0);
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        .box:hover .glass {
+            transform: scale(1) rotate(20deg);
+            opacity: 1;
+        }
+
+        .text {
+            text-align: center;
+            color: white;
+        }
+
+        .name {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            line-height: 0.8em;
+        }
+
+        .type {
+            font-size: 0.8rem;
+        }
+
+        .button {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .button a {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            transform: scale(0);
+            transition: all 0.3s;
+        }
+
+        .box:hover .button a {
+            transform: scale(1);
+        }
+
+        .button a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2 class="title">Halloween Monsters</h2>
+        <div class="container">
+            <div class="box">
+                <div class="image">
+                    <img src="https://static.wikia.nocookie.net/wowpedia/images/d/d5/Headless_Horseman_TCG.jpg" alt="Headless Horseman">
+                </div>
+                <div class="glass">
+                    <div class="text">
+                        <h3 class="name">Headless Horseman</h3>
+                        <span class="type">Undead</span>
+                    </div>
+                    <div class="button">
+                        <a href="https://wowpedia.fandom.com/wiki/Headless_Horseman" target="_blank">
+                            <ion-icon name="globe-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="https://cdn.pixabay.com/photo/2023/09/22/20/11/ai-generated-8269705_1280.jpg" alt="The Mummy">
+                </div>
+                <div class="glass">
+                    <div class="text">
+                        <h3 class="name">The Mummy</h3>
+                        <span class="type">Undead</span>
+                    </div>
+                    <div class="button">
+                        <a href="https://en.wikipedia.org/wiki/Mummy_(undead)" target="_blank">
+                            <ion-icon name="globe-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="https://cdn.pixabay.com/photo/2023/09/21/13/32/ai-generated-8266689_1280.jpg" alt="Werewolf">
+                </div>
+                <div class="glass">
+                    <div class="text">
+                        <h3 class="name">Werewolf</h3>
+                        <span class="type">Lycanthrope</span>
+                    </div>
+                    <div class="button">
+                        <a href="https://en.wikipedia.org/wiki/Werewolf" target="_blank">
+                            <ion-icon name="globe-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html> 

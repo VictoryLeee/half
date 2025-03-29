@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山羊の前端小窝</title>
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(./images/background.png);
+            background-size: cover;
+        }
+
+        .shell {
+            display: flex;
+            max-width: 900px;
+            max-height: 500px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 40px rgb(0, 0, 0);
+            border-radius: 10px;
+        }
+
+        .box {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            /* 毛玻璃效果 */
+            background: linear-gradient(to right bottom,
+                    rgba(255, 255, 255, .2),
+                    rgba(255, 255, 255, .1),
+                    rgba(255, 255, 255, 0.5));
+            backdrop-filter: blur(11px);
+            position: absolute;
+            z-index: 0;
+            transition: 0.6s all linear;
+        }
+
+        .info {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            width: 40%;
+        }
+
+        .content {
+            margin-bottom: 50px;
+        }
+
+        .image { 
+            height: 100%;
+            order: 2;
+            align-self: flex-end;
+            flex-basis: 60%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            transform: translateX(100%);
+            transition: 0.6s all ease-in-out;
+        }
+
+        .title {
+            margin: 15px 0 0 0;
+            font-size: 24px;  
+            font-weight: 700;
+            color: #2C2C2C;
+            transform: translateY(25%);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.6s all ease-in-out;
+        }
+
+        .text {
+            transform: translateY(25%);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.6s all ease-in-out;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #333;
+            line-height: 22px;
+            margin-bottom: 35px;
+        }
+
+        .box-1 .image {
+            background-image: url('./images/01.jpg');
+        }
+
+        .box-2 .image {
+            background-image: url('./images/02.jpg');
+        }
+
+        .box-3 .image {
+            background-image: url('./images/03.jpg');
+        }
+
+        .box-4 .image {
+            background-image: url('./images/04.jpg');
+        }  
+
+        .button {
+            position: absolute;
+            left: 9%;
+            bottom: 10%;
+            z-index: 2;
+            display: flex;
+            gap: 70px;
+        }
+
+        .arrow {
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            font-size: 100px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .arrow i {
+            font-size: 40px;
+        }
+
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+            transform: scale(1.1);
+        }
+
+        .shell__icon {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .active {
+            z-index: 1;
+            display: flex;
+            visibility: visible;
+        }
+
+        .active .title,
+        .active .text {
+            transform: translateY(0);
+            opacity: 1;
+            transition: 0.6s;
+            visibility: visible;
+        }
+
+        .active .image {
+            transition: 0.6s;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div class="button">
+            <span id="moveLeft" class="arrow">
+                <i class="fas fa-chevron-left shell__icon"></i>
+            </span>
+            <span id="moveRight" class="arrow">
+                <i class="fas fa-chevron-right shell__icon"></i>
+            </span>
+        </div>
+    
+        <div class="box box-1">
+            <div class="image"></div>
+            <div class="info">
+                <div class="content">
+                    <h1 class="title">Every Day Feels Like a Holiday with You</h1>
+                    <p class="text">
+                        We don’t say "I love you" every day, but every goodnight, shared breakfast, and little moment we notice—  
+                        they’re all filled with the deepest kind of love.  
+                        One message from you can keep me smiling all day.  
+                        The world is big, but the seconds I wait for your reply are my favorite.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="box box-2">
+            <div class="image"></div>
+            <div class="info">
+                <div class="content">
+                    <h1 class="title">We Still Have So Much More to Journey Through</h1>
+                    <p class="text">
+                        Whether it’s a trip, a rainy day, a move, an argument, or a New Year’s Eve,  
+                        I want to be with you through it all.  
+                        We don’t need to rush—we just need to walk far, together.  
+                        The future isn’t some distant fantasy—  
+                        it’s the everyday moments we create side by side.  
+                        I want to plan all the adventures and live all the small things with you.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="box box-3">
+            <div class="image"></div>
+            <div class="info">
+                <div class="content">
+                    <h1 class="title">You’re Not Just My Moon—You’re My Whole Galaxy</h1>
+                    <p class="text">
+                        I’m not looking for a perfect person—  
+                        I’m waiting for someone who makes me smile like you do.  
+                        Everything you do makes my heart skip.  
+                        You color my world, filter my moods, and brighten my days.  
+                        And if I had to put a time limit on how long I’ll love you—  
+                        I’d choose forever.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const shellItems = document.querySelectorAll('.box');
+            const moveLeftBtn = document.getElementById('moveLeft');
+            const moveRightBtn = document.getElementById('moveRight');
+            let current = 0;
+            const total = shellItems.length;
+
+            // Initialize first slide
+            shellItems[0].classList.add('active');
+
+            function setSlide(prev, next) {
+                let slide = current;
+                if (next > total - 1) {
+                    slide = 0;
+                    current = 0;
+                }
+                if (next < 0) {
+                    slide = total - 1;
+                    current = total - 1;
+                }
+                shellItems[prev].classList.remove('active');
+                shellItems[slide].classList.add('active');
+                setTimeout(function () { }, 800);
+
+                console.log("current " + current);
+                console.log("prev " + prev);
+            }
+
+            moveRightBtn.addEventListener('click', function () {
+                const next = current;
+                current = current + 1;
+                setSlide(next, current);
+            });
+
+            moveLeftBtn.addEventListener('click', function () {
+                const prev = current;
+                current = current - 1;
+                setSlide(prev, current);
+            });
+        });
+    </script>
+</body>
+
+</html>

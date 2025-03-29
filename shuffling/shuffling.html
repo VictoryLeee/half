@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山羊の前端小窝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-content: center;
+            padding: 1rem;
+            font: 1rem system-ui;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        }
+
+        .box {
+            --img-width: 200px;
+            --duration: 300ms;
+            width: min(100% - 4rem, 800px);
+            margin: 0 auto;
+            display: grid;
+        }
+
+        .card {
+            grid-area: 1/1;
+            display: grid;
+            place-items: center;
+            gap: 2rem;
+            z-index: -1;
+        }
+
+        @media (min-width: 600px) {
+            .card {
+                grid-template-columns: var(--img-width) auto;
+                gap: 4rem;
+            }
+        }
+
+        .image {
+            width: var(--img-width);
+            height: var(--img-width);
+            border-radius: 10px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            transform-origin: center;
+            object-fit: cover;
+            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+            rotate: var(--angle, 0deg);
+        }
+
+        .text {
+            display: grid;
+            gap: 1rem;
+            color: white;
+        }
+
+        .num {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            opacity: var(--data-opacity, 0);
+        }
+
+        .title, .describe {
+            transition: var(--duration) ease-in-out;
+            transition-delay: var(--data-delay, 0ms);
+            opacity: var(--data-opacity, 0);
+            translate: 0 var(--data-y, 20px);
+        }
+
+        .describe {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 600px) {
+            .button {
+                justify-content: start;
+            }
+        }
+
+        .button label {
+            cursor: pointer;
+            pointer-events: var(--card-events, none);
+            opacity: var(--data-opacity, 0);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-content: center;
+            transition: background-color 300ms, color 300ms;
+        }
+
+        .button label:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        input[type="radio"] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        input:checked + .card {
+            z-index: 10;
+            --data-opacity: 1;
+            --data-y: 0;
+            --data-delay: var(--duration);
+            --card-events: auto;
+        }
+
+        input:checked + .card ~ .card {
+            z-index: -1;
+        }
+
+        input:checked + .card > .image {
+            animation: reveal calc(var(--duration) * 2) forwards;
+        }
+
+        @keyframes reveal {
+            50% {
+                translate: -150% 0;
+                --angle: 0deg;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="radio" id="radio-1" name="radio-card" checked>
+        <article class="card" style="--angle:4deg">
+            <img class="image" src="https://picsum.photos/id/21/200/300">
+            <div class="text">
+                <span class="num">1/7</span>
+                <h2 class="title">Alejandro Escamilla</h2>
+                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
+                <div class="button">
+                    <label for="radio-7">&#10094;</label>
+                    <label for="radio-2">&#10095;</label>
+                </div>
+            </div>
+        </article>
+
+        <input type="radio" id="radio-2" name="radio-card">
+        <article class="card" style="--angle:-8deg">
+            <img class="image" src="https://picsum.photos/id/30/200/300">
+            <div class="text">
+                <span class="num">2/7</span>
+                <h2 class="title">Shyamanta Baruah</h2>
+                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
+                <div class="button">
+                    <label for="radio-1">&#10094;</label>
+                    <label for="radio-3">&#10095;</label>
+                </div>
+            </div>
+        </article>
+
+        <input type="radio" id="radio-3" name="radio-card">
+        <article class="card" style="--angle:-7deg">
+            <img class="image" src="https://picsum.photos/id/39/200/300">
+            <div class="text">
+                <span class="num">3/7</span>
+                <h2 class="title">Luke Chesser</h2>
+                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
+                <div class="button">
+                    <label for="radio-2">&#10094;</label>
+                    <label for="radio-4">&#10095;</label>
+                </div>
+            </div>
+        </article>
+
+        <input type="radio" id="radio-4" name="radio-card">
+        <article class="card" style="--angle:11deg">
+            <img class="image" src="https://picsum.photos/id/103/200/300">
+            <div class="text">
+                <span class="num">4/7</span>
+                <h2 class="title">Ilham Rahmansyah</h2>
+                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
+                <div class="button">
+                    <label for="radio-3">&#10094;</label>
+                    <label for="radio-5">&#10095;</label>
+                </div>
+            </div>
+        </article>
+
+        <input type="radio" id="radio-5" name="radio-card">
+        <article class="card" style="--angle:13deg">
+            <img class="image" src="https://picsum.photos/id/175/200/300">
+            <div class="text">
+                <span class="num">5/7</span>
+                <h2 class="title">petradr</h2>
+                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
+                <div class="button">
+                    <label for="radio-4">&#10094;</label>
+                    <label for="radio-6">&#10095;</label>
+                </div>
+            </div>
+        </article>
+
+        <input type="radio" id="radio-6" name="radio-card">
+        <article class="card" style="--angle:-17deg">
+            <img class="image" src="https://picsum.photos/id/349/200/300">
+            <div class="text">
+                <span class="num">6/7</span>
+                <h2 class="title">Caleb George</h2>
+                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
+                <div class="button">
+                    <label for="radio-5">&#10094;</label>
+                    <label for="radio-7">&#10095;</label>
+                </div>
+            </div>
+        </article>
+
+        <input type="radio" id="radio-7" name="radio-card">
+        <article class="card" style="--angle:20deg">
+            <img class="image" src="https://picsum.photos/id/401/200/300">
+            <div class="text">
+                <span class="num">7/7</span>
+                <h2 class="title">Austin Ban</h2>
+                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus maiores accusantium cumque atque? Ex voluptatem quisquam temporibus. Provident rerum quae nemo eligendi fugiat!</p>
+                <div class="button">
+                    <label for="radio-6">&#10094;</label>
+                    <label for="radio-1">&#10095;</label>
+                </div>
+            </div>
+        </article>
+    </div>
+</body>
+</html> 
