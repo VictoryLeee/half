@@ -31,14 +31,6 @@
             border-radius: 50%;
         }
 
-        @media (max-width: 800px) {
-            .box {
-                left: 0;
-                right: auto;
-                transform: translateX(calc(-50% + 2rem));
-            }
-        }
-
         .box::before {
             content: "";
             position: absolute;
@@ -587,4 +579,3 @@
         setCurrentLangDisplay(languageFlags.find(lang => lang.code === locale));
     </script>
 </body>
-</html> 

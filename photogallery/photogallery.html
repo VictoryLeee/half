@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山羊の前端小窝</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      display: grid;
+      place-content: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    .box {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+        "point-1 point-2 point-3 main main main"
+        "point-4 point-5 point-6 main main main"
+        "point-7 point-8 point-9 main main main";
+      gap: 0.5rem;
+    }
+    input[type="radio"] {
+      display: none;
+    }
+    .point {
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+    }
+    .point img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .point:nth-of-type(1) { grid-area: point-1; }
+    .point:nth-of-type(2) { grid-area: point-2; }
+    .point:nth-of-type(3) { grid-area: point-3; }
+    .point:nth-of-type(4) { grid-area: point-4; }
+    .point:nth-of-type(5) { grid-area: point-5; }
+    .point:nth-of-type(6) { grid-area: point-6; }
+    .point:nth-of-type(7) { grid-area: point-7; }
+    .point:nth-of-type(8) { grid-area: point-8; }
+    .point:nth-of-type(9) { grid-area: point-9; }
+    .box .main {
+      grid-area: main;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      display: none;
+    }
+    .text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+    }
+    .title {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .describe a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    #img-1:checked ~ .main-1,
+    #img-2:checked ~ .main-2,
+    #img-3:checked ~ .main-3,
+    #img-4:checked ~ .main-4,
+    #img-5:checked ~ .main-5,
+    #img-6:checked ~ .main-6,
+    #img-7:checked ~ .main-7,
+    #img-8:checked ~ .main-8,
+    #img-9:checked ~ .main-9 {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <input type="radio" name="img" id="img-1" checked>
+    <input type="radio" name="img" id="img-2">
+    <input type="radio" name="img" id="img-3">
+    <input type="radio" name="img" id="img-4">
+    <input type="radio" name="img" id="img-5">
+    <input type="radio" name="img" id="img-6">
+    <input type="radio" name="img" id="img-7">
+    <input type="radio" name="img" id="img-8">
+    <input type="radio" name="img" id="img-9">
+
+    <label class="point" for="img-1"><img src="https://images.pexels.com/photos/18332726/pexels-photo-18332726.jpeg" alt="Vintage Analog Camera"></label>
+    <label class="point" for="img-2"><img src="https://images.pexels.com/photos/3361178/pexels-photo-3361178.jpeg" alt="Old Tricycle"></label>
+    <label class="point" for="img-3"><img src="https://images.pexels.com/photos/6156545/pexels-photo-6156545.jpeg" alt="Unicycle"></label>
+    <label class="point" for="img-4"><img src="https://images.pexels.com/photos/6691970/pexels-photo-6691970.jpeg" alt="Old Car"></label>
+    <label class="point" for="img-5"><img src="https://images.pexels.com/photos/7561182/pexels-photo-7561182.jpeg" alt="Rocking Chair"></label>
+    <label class="point" for="img-6"><img src="https://images.pexels.com/photos/4765889/pexels-photo-4765889.jpeg" alt="Lifesaver"></label>
+    <label class="point" for="img-7"><img src="https://images.pexels.com/photos/3868136/pexels-photo-3868136.jpeg" alt="Rusty Tap"></label>
+    <label class="point" for="img-8"><img src="https://images.pexels.com/photos/4575426/pexels-photo-4575426.jpeg" alt="Payphone"></label>
+    <label class="point" for="img-9"><img src="https://images.pexels.com/photos/333984/pexels-photo-333984.jpeg" alt="CRT TV"></label>
+
+    <div class="main main-1" style="background-image: url('https://images.pexels.com/photos/18332726/pexels-photo-18332726.jpeg')">
+      <div class="text">
+        <div class="title">Vintage Analog Camera</div>
+        <div class="describe">Photo by Elina Volkova from <a href="https://www.pexels.com/photo/vintage-analog-camera-18332726/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-2" style="background-image: url('https://images.pexels.com/photos/3361178/pexels-photo-3361178.jpeg')">
+      <div class="text">
+        <div class="title">An Old Tricycle</div>
+        <div class="describe">Photo by jovan curayag from <a href="https://www.pexels.com/photo/an-old-tricycle-3361178/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-3" style="background-image: url('https://images.pexels.com/photos/6156545/pexels-photo-6156545.jpeg')">
+      <div class="text">
+        <div class="title">Old shabby unicycle</div>
+        <div class="describe">Photo by Laker from <a href="https://www.pexels.com/photo/old-shabby-unicycle-hanging-on-brick-wall-6156545/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-4" style="background-image: url('https://images.pexels.com/photos/6691970/pexels-photo-6691970.jpeg')">
+      <div class="text">
+        <div class="title">Red car in woods</div>
+        <div class="describe">Photo by Nandi Gustian from <a href="https://www.pexels.com/photo/old-fashioned-red-car-left-in-woods-6691970/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-5" style="background-image: url('https://images.pexels.com/photos/7561182/pexels-photo-7561182.jpeg')">
+      <div class="text">
+        <div class="title">Rocking chair</div>
+        <div class="describe">Photo by Erik Mclean from <a href="https://www.pexels.com/photo/rocking-chair-on-shabby-wooden-porch-7561182/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-6" style="background-image: url('https://images.pexels.com/photos/4765889/pexels-photo-4765889.jpeg')">
+      <div class="text">
+        <div class="title">Shabby lifesaver</div>
+        <div class="describe">Photo by Julia Khalimova from <a href="https://www.pexels.com/photo/shabby-lifesaver-on-green-wall-4765889/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-7" style="background-image: url('https://images.pexels.com/photos/3868136/pexels-photo-3868136.jpeg')">
+      <div class="text">
+        <div class="title">Rusty faucet</div>
+        <div class="describe">Photo by Noah from <a href="https://www.pexels.com/photo/shabby-vintage-faucet-in-old-bathroom-3868136/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-8" style="background-image: url('https://images.pexels.com/photos/4575426/pexels-photo-4575426.jpeg')">
+      <div class="text">
+        <div class="title">Public payphone</div>
+        <div class="describe">Photo by Darya Sannikova from <a href="https://www.pexels.com/photo/old-metal-public-payphone-hanging-on-shabby-wall-4575426/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+    <div class="main main-9" style="background-image: url('https://images.pexels.com/photos/333984/pexels-photo-333984.jpeg')">
+      <div class="text">
+        <div class="title">CRT TV</div>
+        <div class="describe">Photo by Rene Asmussen from <a href="https://www.pexels.com/photo/vintage-brown-crt-tv-on-parquet-wood-flooring-333984/" target="_blank">Pexels</a></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山羊の前端小窝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .box {
+            width: 32rem;
+            aspect-ratio: 1;
+            position: relative;
+        }
+
+        .point {
+            position: absolute;
+            width: 5.5rem;
+            height: 5.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .point::before {
+            content: '';
+            position: absolute;
+            inset: 30px;
+            border-radius: 50%;
+            background-color: hotpink;
+        }
+
+        .text {
+            position: absolute;
+            width: 32rem;
+            aspect-ratio: 1;
+            left: 50%;
+            top: 50%;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%);
+            perspective: 64rem;
+            background: radial-gradient(rgba(0, 0, 0, 0.75) 15%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            animation: rotate 25s linear infinite;
+        }
+
+        .text:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotateX(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(360deg); }
+        }
+
+        @media (max-width: 48rem) {
+            .box {
+                width: 16rem;
+            }
+            .text {
+                width: 16rem;
+            }
+        }
+
+        @media (max-width: 32rem) {
+            .box {
+                width: 12rem;
+            }
+            .text {
+                width: 12rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="text">
+            <div class="point" style="--i: 1"></div>
+            <div class="point" style="--i: 2"></div>
+            <div class="point" style="--i: 3"></div>
+            <div class="point" style="--i: 4"></div>
+            <div class="point" style="--i: 5"></div>
+            <div class="point" style="--i: 6"></div>
+            <div class="point" style="--i: 7"></div>
+            <div class="point" style="--i: 8"></div>
+            <div class="point" style="--i: 9"></div>
+            <div class="point" style="--i: 10"></div>
+            <div class="point" style="--i: 11"></div>
+            <div class="point" style="--i: 12"></div>
+            <div class="point" style="--i: 13"></div>
+            <div class="point" style="--i: 14"></div>
+            <div class="point" style="--i: 15"></div>
+            <div class="point" style="--i: 16"></div>
+            <div class="point" style="--i: 17"></div>
+            <div class="point" style="--i: 18"></div>
+            <div class="point" style="--i: 19"></div>
+            <div class="point" style="--i: 20"></div>
+        </div>
+    </div>
+
+    <script>
+        const points = document.querySelectorAll('.point');
+        const radius = 16;
+        const numElements = 20;
+
+        points.forEach((point, index) => {
+            const phi = Math.acos(-1 + (2 * (index + 1)) / numElements);
+            const theta = Math.sqrt(numElements * Math.PI) * phi;
+            
+            const x = Math.cos(theta) * Math.sin(phi);
+            const y = Math.sin(theta) * Math.sin(phi);
+            const z = Math.cos(phi);
+            
+            const vectorLength = Math.sqrt(x * x + y * y + z * z);
+            const normalizedX = x / vectorLength;
+            const normalizedY = y / vectorLength;
+            const normalizedZ = z / vectorLength;
+            
+            const scaledX = normalizedX * radius;
+            const scaledY = normalizedY * radius;
+            const scaledZ = normalizedZ * radius;
+            
+            const finalX = scaledX + radius;
+            const finalY = scaledY + radius;
+            const finalZ = scaledZ;
+            
+            point.style.transform = `translate3d(${finalX}rem, ${finalY}rem, ${finalZ}rem)`;
+        });
+    </script>
+</body>
+</html> 
